@@ -1,24 +1,74 @@
-(function() {
-  var canvas = document.getElementById('myCanvas');
-  if (canvas.getContext) {
-    var ctx = canvas.getContext('2d');
+  const HOST = location.origin.replace(/^http/, 'ws');
+  const ws = new WebSocket(HOST);
+  var bForCCC=true;const ccc = function(mmm){if(bForCCC) bForCCC=confirm(mmm);};
+  //ws.onmessage = function(event){alert(event.data.toString());}; //how to use
 
-    ctx.fillRect(25, 25, 100, 100);
-    ctx.clearRect(45, 45, 60, 60);
-    ctx.strokeRect(50, 50, 50, 50);
+  
+  const myCanvas = document.getElementById("myCanvas");
+    myCanvas.width = window.innerWidth;
+    myCanvas.height = window.innerHeight;
+  const DRAW = myCanvas.getContext("2d");
+  function line(x1,y1,x2,y2){
+    DRAW.beginPath();
+    DRAW.moveTo(x1,y1);
+    DRAW.lineTo(x2,y2);
+    DRAW.stroke();
   }
-}());
+  function circle(x,y,r){
+    DRAW.beginPath();
+    DRAW.arc(x,y,r,0,2*Math.PI);
+    DRAW.fill();
+    DRAW.stroke();
+  }
+  function rect(x1,y1,w,h){
+    DRAW.beginPath();
+    DRAW.rect(x1,y1,w,h);
+    DRAW.fill();
+    DRAW.stroke();
+  }
+  function distsqrd(x1,y1,x2,y2){
+    return (x1-x2)*(x1-x2)+(y1-y2)*(y1-y2);
+  }
+  
+  
+  function loadingScreen(){
+    DRAW.fillStyle = "rgb(0,0,255)";
+    DRAW.strokeStyle = "rgb(0,255,0)";
+    DRAW.lineWidth = 5;
+    circle(100,100,50);
+    rect(100,100,200,200);
+    circle(250,250,1);
+    line(100,50,200,50);
+    line(200,50,200,200);
+    line(25,375,375,25);
+    DRAW.fillStyle = "rgb(255,255,255)";
+    DRAW.strokeStyle = "rgb(0,0,0)";
+    DRAW.lineWidth = 1;
+  }
+  loadingScreen();
 
-var coords = ew Float64Array(2);
-  coods[0] = 0;
-  coods[1] = 0;
+  
+  var mycoords = new Float64Array(2);
+    mycoords[0] = 0;
+    mycoords[1] = 0;
+  var allcoords = [];
 
-document.addEventListener('mousemove',function(mouseE){
-  coords[0] = mouseE.clientX;
-  coords[1] = mouseE.clientY;
-});
-
-setInterval(function(){
-  ws.send(coords);
-}, 20);
+  document.addEventListener('mousemove',function(mouseE){
+    mycoords[0] = mouseE.clientX;
+    mycoords[1] = mouseE.clientY;
+  });
+  setInterval(function(){
+    ws.send(mycoords);
+  }, 20);
+  ws.onmessage = function(event){
+    allcoords = event.data;
+  };  
+  function drawScene(){
+    DRAW.clearRect(0,0,myCanvas.width,myCanvas.length);
+    for(var a=0;a<allcoords.length;a+=3){
+      DRAW.rect(allcoords[a+1]-5,allcoords[a+2]-5,10,10);
+    }
+    DRAW.stroke();
+  }
+  window.setTimeout(function(){window.requestAnimationFrame(drawScene);}, 500);
 
