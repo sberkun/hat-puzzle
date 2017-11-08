@@ -17,8 +17,13 @@ const peoples = [];
 const testaaa = require('./backend/game.js').exportFunction(peoples);
 
 wss.on('connection', (ws) => {
+  ws.id = Math.random();
+    if(!peoples[ws.id]) ws.id = Math.random();
+    if(!peoples[ws.id]) ws.id = Math.random();
+    if(!peoples[ws.id]) ws.id = Math.random();
+    if(!peoples[ws.id]) ws.id = Math.random();
+    if(!peoples[ws.id]){ws.send("uh oh bad, couldn't connect");return;}
   peoples[ws.id] = new require('./backend/player.js').exportFunction();
-  ws.send(""+ws.id);
   ws.on('message',(message) => {});
   ws.on('close', ()=>peoples.splice(ws.id,1) );
   //ws.send("hi");
