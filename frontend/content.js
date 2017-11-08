@@ -1,7 +1,6 @@
   const HOST = location.origin.replace(/^http/, 'ws');
   const ws = new WebSocket(HOST);
   var bForCCC=true;const ccc = function(mmm){if(bForCCC) bForCCC=confirm(mmm);};
-  //ws.onmessage = function(event){alert(event.data.toString());}; //how to use
 
   
   const myCanvas = document.getElementById("myCanvas");
