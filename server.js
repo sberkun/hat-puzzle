@@ -23,7 +23,7 @@ wss.on('connection', (ws) => {
     if(peoples[ws.id]) ws.id = Math.random();
     if(peoples[ws.id]) ws.id = Math.random();
     if(peoples[ws.id]){ws.send("uh oh bad, couldn't connect");return;}
-  peoples[ws.id] = new require('./backend/player.js').exportFunction();
+  peoples[ws.id] = new require('./backend/player.js').exportFunction(ws.id);
   ws.on('message',(message) => {});
   ws.on('close', ()=>peoples.splice(ws.id,1) );
   //ws.send("hi");
