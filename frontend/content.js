@@ -66,9 +66,8 @@
   function drawScene(){
     DRAW.clearRect(0,0,myCanvas.width,myCanvas.length);
     for(var a=0;a<allcoords.length;a+=3){
-      DRAW.rect(allcoords[a+1]-5,allcoords[a+2]-5,10,10);
+      rect(allcoords[a+1]-5,allcoords[a+2]-5,10,10);
     }
-    DRAW.stroke();
   }
   window.setTimeout(function(){window.requestAnimationFrame(drawScene);}, 500);
 
