@@ -17,7 +17,7 @@ const peoples = [];
 const testaaa = require('./backend/game.js').exportFunction(peoples);
 
 wss.on('connection', (ws) => {
-  ws.id = Math.random();
+  ws.id = Math.random();/*
     if(peoples[ws.id]) ws.id = Math.random();
     if(peoples[ws.id]) ws.id = Math.random();
     if(peoples[ws.id]) ws.id = Math.random();
@@ -27,8 +27,8 @@ wss.on('connection', (ws) => {
   ws.on('message',(message) => {
     peoples[ws.id].update(message[0],message[1]);
   });
-  ws.on('close', ()=>peoples.splice(ws.id,1) );
-  ws.send(new Float64Array([0,200,200]));
+  ws.on('close', ()=>peoples.splice(ws.id,1) );*/
+  ws.send(new Float64Array([ws.id,200,200]));
 });
 
 setInterval(testaaa, 3000);
