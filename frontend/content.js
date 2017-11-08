@@ -64,6 +64,7 @@
   };  
   function drawScene(){
     DRAW.clearRect(0,0,myCanvas.width,myCanvas.length);
+    alert();
     for(var a=0;a<allcoords.length;a+=3){
       rect(allcoords[a+1]-5,allcoords[a+2]-5,10,10);
     }
