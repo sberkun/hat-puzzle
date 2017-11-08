@@ -23,7 +23,7 @@ wss.on('connection', (ws) => {
     if(peoples[ws.id]) ws.id = Math.random();
     if(peoples[ws.id]) ws.id = Math.random();
     if(peoples[ws.id]){ws.send(new Float64Array([0,0,0]));return;}
-  peoples[ws.id] = new require('./backend/player.js').exportFunction(ws.id);
+  peoples[ws.id] = new require('./backend/player.js').exportFunction(ws);
   ws.on('message',(message) => {
     peoples[ws.id].update(message[0],message[1]);
   });
