@@ -18,7 +18,7 @@ const testaaa = require('./backend/game.js').exportFunction(peoples);
 
 wss.on('connection', (ws) => {
   ws.id = Math.random();
-  var aaa = new require('./backend/player.js').exportFunction(ws);
+  var aaa = new (require('./backend/player.js').exportFunction(ws));
   ws.on('message',(message) => {
     var soifg = new Float32Array(message.data);
     aaa.update(soifg[0],soifg[1]);
