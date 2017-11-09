@@ -15,7 +15,7 @@ module.exports.exportFunction = function(peoples){
         iii[0] = 5;
         iii[1] = 300;
         iii[2] = 500;
-      if(peoples[p])
+      if(peoples[p].ws)
         peoples[p].ws.send(bbb);
     }
   };
