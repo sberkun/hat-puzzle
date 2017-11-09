@@ -28,7 +28,8 @@ wss.on('connection', (ws) => {
     peoples[ws.id].update(message[0],message[1]);
   });
   ws.on('close', ()=>peoples.splice(ws.id,1) );*/
-  ws.send((new Float64Array([0,200,200])).buffer);
+  var nana = new Float64Array([0,200,200]);
+  ws.send(nana);
 });
 
 //setInterval(testaaa, 3000);
