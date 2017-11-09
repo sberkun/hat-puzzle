@@ -47,8 +47,13 @@
   }
   loadingScreen();
 
+
+
+
+
   
-  var mycoords = new Float32Array(2);
+  var mycoordsBuffer = new ArrayBuffer(2*4);//length 2
+    var mycoords = new Float32Array(mycoordsBuffer);
     mycoords[0] = 0;
     mycoords[1] = 0;
   var allcoords = [];
@@ -59,7 +64,6 @@
   });
   ws.onmessage = function(event){
     allcoords = new Float32Array(event.data);
-    //allcoords = new Float32Array([1,2,4]);
     alert(allcoords[0]);
   };  
   ws.onclose = function(event){
@@ -72,7 +76,7 @@
     }
   }
   ws.onopen = function(event){
-    //interval=window.setInterval(function(){ws.send(mycoords.buffer);}, 20);
+    //interval=window.setInterval(function(){ws.send(mycoordsBuffer);}, 20);
     window.setTimeout(function(){window.requestAnimationFrame(drawScene);}, 200);
   }
 
