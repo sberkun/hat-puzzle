@@ -12,6 +12,7 @@ module.exports.exportFunction = function(peoples){
       info[a++] = peoples[p].y;
     }
     for(var p in peoples){
+      console.log(typeof infoBuffer);
       peoples[p].ws.send(infoBuffer);
     }
   };
