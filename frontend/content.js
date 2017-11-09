@@ -56,9 +56,6 @@
     mycoords[0] = mouseE.clientX;
     mycoords[1] = mouseE.clientY;
   });
-  setInterval(function(){
-    ws.send(mycoords);
-  }, 20);
   ws.onmessage = function(event){
     allcoords = event.data;
   };  
@@ -68,5 +65,7 @@
       rect(allcoords[a+1]-5,allcoords[a+2]-5,10,10);
     }
   }
+  setInterval(function(){ws.send(mycoords);}, 20);
+  window.setTimeout(function(){window.setInterval(function(){ws.send(mycoords);}, 20);}, 500);
   window.setTimeout(function(){window.requestAnimationFrame(drawScene);}, 500);
 
