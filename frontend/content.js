@@ -57,8 +57,8 @@
     mycoords[1] = mouseE.clientY;
   });
   ws.onmessage = function(event){
-    //allcoords = new Float64Array(event.data);
-    allcoords = new Float64Array([1,2,4]);
+    allcoords = new Float64Array(event.data);
+    //allcoords = new Float64Array([1,2,4]);
     alert(allcoords[0]);
   };  
   ws.onclose = function(event){
