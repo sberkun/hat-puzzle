@@ -51,7 +51,7 @@
     mycoords[0] = 0;
     mycoords[1] = 0;
   var allcoords = [];
-
+  var interval;
   document.addEventListener('mousemove',function(mouseE){
     mycoords[0] = mouseE.clientX;
     mycoords[1] = mouseE.clientY;
@@ -59,12 +59,18 @@
   ws.onmessage = function(event){
     allcoords = event.data;
   };  
+  ws.onclose = function(event){
+    window.clearInterval(interval);
+  }
   function drawScene(){
     DRAW.clearRect(0,0,myCanvas.width,myCanvas.height);
     for(var a=0;a<allcoords.length;a+=3){
       rect(allcoords[a+1]-5,allcoords[a+2]-5,10,10);
     }
   }
-  window.setTimeout(function(){window.setInterval(function(){ws.send(mycoords);}, 20);}, 500);
-  window.setTimeout(function(){window.requestAnimationFrame(drawScene);}, 500);
+  ws.onopen = function(event){
+    interval=window.setInterval(function(){ws.send(mycoords);}, 20);
+    window.setTimeout(function(){window.requestAnimationFrame(drawScene);}, 200);
+  }
+
 
