@@ -20,12 +20,15 @@ wss.on('connection', (ws) => {
   ws.id = Math.random();
     if(peoples[ws.id]) ws.id = Math.random();
     if(peoples[ws.id]) ws.id = Math.random();
-    if(peoples[ws.id]) return;/*
+    if(peoples[ws.id]) return;
   peoples[ws.id] = new require('./backend/player.js').exportFunction(ws);
   ws.on('message',(message) => {
     peoples[ws.id].update(message[0],message[1]);
   });
-  ws.on('close', ()=>peoples.splice(ws.id,1) );*/
+  ws.on('close', ()=>peoples.splice(ws.id,1) );
+  
+  
+  
   var sendThis = new ArrayBuffer(3*4);
   var nana = new Float32Array(sendThis);
     nana[0] = ws.id;
