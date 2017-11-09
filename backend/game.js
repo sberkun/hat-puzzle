@@ -1,5 +1,5 @@
 module.exports.exportFunction = function(peoples){
-  var pplleenn = Object.keys(peoples).length;
+  var pplleenn = 0; for(var p in peoples) pplleenn++;
   return function(){
     var infoBuffer = new ArrayBuffer(pplleenn*12);
     console.log(pplleenn);
