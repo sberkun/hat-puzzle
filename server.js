@@ -24,7 +24,7 @@ wss.on('connection', (ws) => {
     var soifg = new Float32Array(message.data);
     peoples[ws.id].update(soifg[0],soifg[1]);
   });
-  ws.on('close', ()=>peoples.splice(ws.id,1) );
+  ws.on('close', ()=> peoples[ws.id]=null );
   
 
 });
