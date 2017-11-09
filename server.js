@@ -17,12 +17,12 @@ const peoples = [];
 const testaaa = require('./backend/game.js').exportFunction(peoples);
 
 wss.on('connection', (ws) => {
-  ws.id = Math.random();/*
+  ws.id = Math.random();
     if(peoples[ws.id]) ws.id = Math.random();
     if(peoples[ws.id]) ws.id = Math.random();
     if(peoples[ws.id]) ws.id = Math.random();
     if(peoples[ws.id]) ws.id = Math.random();
-    if(peoples[ws.id]) return;
+    if(peoples[ws.id]) return;/*
   peoples[ws.id] = new require('./backend/player.js').exportFunction(ws);
   ws.on('message',(message) => {
     peoples[ws.id].update(message[0],message[1]);
