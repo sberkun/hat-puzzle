@@ -26,14 +26,7 @@ wss.on('connection', (ws) => {
   });
   ws.on('close', ()=>peoples.splice(ws.id,1) );
   
-  
-  
-  var sendThis = new ArrayBuffer(3*4);
-  var nana = new Float32Array(sendThis);
-    nana[0] = ws.id;
-    nana[1] = 200;
-    nana[2] = 200;
-  ws.send(sendThis);
+
 });
 
-//setInterval(testaaa, 3000);
+setInterval(testaaa, 100);
