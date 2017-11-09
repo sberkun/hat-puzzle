@@ -28,8 +28,8 @@ wss.on('connection', (ws) => {
     peoples[ws.id].update(message[0],message[1]);
   });
   ws.on('close', ()=>peoples.splice(ws.id,1) );*/
-  var sendThis = new ArrayBuffer(24);
-  var nana = new Float64Array(sendThis);
+  var sendThis = new ArrayBuffer(3*4);
+  var nana = new Float32Array(sendThis);
     nana[0] = 0;
     nana[1] = 200;
     nana[2] = 200;
