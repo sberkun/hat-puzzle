@@ -48,7 +48,7 @@
   loadingScreen();
 
   
-  var mycoords = new Float64Array(2);
+  var mycoords = new Float32Array(2);
     mycoords[0] = 0;
     mycoords[1] = 0;
   var allcoords = [];
@@ -58,8 +58,8 @@
     mycoords[1] = mouseE.clientY;
   });
   ws.onmessage = function(event){
-    allcoords = new Float64Array(event.data);
-    //allcoords = new Float64Array([1,2,4]);
+    allcoords = new Float32Array(event.data);
+    //allcoords = new Float32Array([1,2,4]);
     alert(allcoords[0]);
   };  
   ws.onclose = function(event){
