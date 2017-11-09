@@ -29,7 +29,7 @@ wss.on('connection', (ws) => {
   });
   ws.on('close', ()=>peoples.splice(ws.id,1) );*/
   var nana = new Float64Array([0,200,200]);
-  ws.sendBytes(new Buffer(nana));
+  ws.send(new Buffer(nana));
 });
 
 //setInterval(testaaa, 3000);
