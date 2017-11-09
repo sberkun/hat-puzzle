@@ -13,7 +13,7 @@ const server = express()
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const wss = new SocketServer({ server });
-const peoples = [];
+const peoples = {};
 const testaaa = require('./backend/game.js').exportFunction(peoples);
 const person = require('./backend/player.js').exportFunction;
 
@@ -24,7 +24,7 @@ wss.on('connection', (ws) => {
     var soifg = new Float32Array(message.data);
     peoples[ws.id].update(soifg[0],soifg[1]);
   });
-  ws.on('close', ()=> peoples[ws.id]=null );
+  ws.on('close', ()=> delete peoples[ws.id]);
   
 
 });
