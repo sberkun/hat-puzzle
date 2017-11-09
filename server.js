@@ -25,8 +25,6 @@ wss.on('connection', (ws) => {
     peoples[ws.id].update(soifg[0],soifg[1]);
   });
   ws.on('close', ()=> delete peoples[ws.id]);
-  
-
 });
 
 setInterval(testaaa, 100);
