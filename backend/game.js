@@ -9,12 +9,7 @@ module.exports.exportFunction = function(peoples){
       info[a++] = peoples[p].y;
     }
     for(var p in peoples){
-      var bbb = new ArrayBuffer(12);
-        var iii = new Float32Array(bbb);
-        iii[0] = 5;
-        iii[1] = 300;
-        iii[2] = 500;
-      peoples[p].ws.send(bbb);
+      peoples[p].ws.send(infoBuffer);
     }
   };
 };
