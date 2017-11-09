@@ -64,7 +64,6 @@
   });
   ws.onmessage = function(event){
     allcoords = new Float32Array(event.data);
-    alert(allcoords[0]);
   };  
   ws.onclose = function(event){
     window.clearInterval(interval);
