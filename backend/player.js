@@ -5,5 +5,6 @@ module.exports.exportFunction = function(client){
   this.update = function(x,y){
     this.x = x;
     this.y = y;
+    console.log(""+this.x+", "+this.y);
   }
 };
