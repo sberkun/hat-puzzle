@@ -1,15 +1,17 @@
 module.exports.exportFunction = function(peoples){
-  var info = new Float64Array(peoples.length*3);
+  var infoBuffer = new ArrayBuffer(peoples.length*12);
+  var info = new Float32Array(infoBuffer);
   return function(){
     if(info.length!=3*peoples.length) 
-      info = new Float64Array(peoples.length*3);
+      infoBuffer = new ArrayBuffer(peoples.length*12);
+      info = new Float32Array(infoBuffer);
     var a=0; for(var p in peoples){
       info[a++] = peoples[p].ws.id;
       info[a++] = peoples[p].x;
       info[a++] = peoples[p].y;
     }
     for(var p in peoples){
-      peoples[p].ws.send(info);
+      peoples[p].ws.send(infoBuffer);
     }
   };
 };
