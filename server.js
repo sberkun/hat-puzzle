@@ -18,12 +18,10 @@ const testaaa = require('./backend/game.js').exportFunction(peoples);
 
 wss.on('connection', (ws) => {
   ws.id = Math.random();
-    if(peoples[ws.id]) ws.id = Math.random();
-    if(peoples[ws.id]) ws.id = Math.random();
-    if(peoples[ws.id]) return;
   peoples[ws.id] = new require('./backend/player.js').exportFunction(ws);
   ws.on('message',(message) => {
-    peoples[ws.id].update(message[0],message[1]);
+    var soifg = new Float32Array(message.data);
+    peoples[ws.id].update(soifg[0],soifg[1]);
   });
   ws.on('close', ()=>peoples.splice(ws.id,1) );
   
