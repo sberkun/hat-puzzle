@@ -57,7 +57,7 @@
     mycoords[1] = mouseE.clientY;
   });
   ws.onmessage = function(event){
-    allcoords = event.data;
+    allcoords = new Float64Array(event.data);
     alert(allcoords[0]);
   };  
   ws.onclose = function(event){
@@ -70,7 +70,7 @@
     }
   }
   ws.onopen = function(event){
-    //interval=window.setInterval(function(){ws.send(mycoords);}, 20);
+    //interval=window.setInterval(function(){ws.send(mycoords.buffer);}, 20);
     window.setTimeout(function(){window.requestAnimationFrame(drawScene);}, 200);
   }
 
