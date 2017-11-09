@@ -20,8 +20,6 @@ wss.on('connection', (ws) => {
   ws.id = Math.random();
     if(peoples[ws.id]) ws.id = Math.random();
     if(peoples[ws.id]) ws.id = Math.random();
-    if(peoples[ws.id]) ws.id = Math.random();
-    if(peoples[ws.id]) ws.id = Math.random();
     if(peoples[ws.id]) return;/*
   peoples[ws.id] = new require('./backend/player.js').exportFunction(ws);
   ws.on('message',(message) => {
