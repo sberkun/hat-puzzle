@@ -2,7 +2,6 @@ module.exports.exportFunction = function(peoples){
   return function(){
     var pplleenn = Object.keys(peoples).length;
     var infoBuffer = new ArrayBuffer(pplleenn*12);
-    console.log(pplleenn);
     var info = new Float32Array(infoBuffer);
     var a=0; for(var p in peoples){
       info[a++] = peoples[p].ws.id;
