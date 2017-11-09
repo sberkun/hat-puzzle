@@ -28,7 +28,7 @@ wss.on('connection', (ws) => {
     peoples[ws.id].update(message[0],message[1]);
   });
   ws.on('close', ()=>peoples.splice(ws.id,1) );*/
-  //ws.send(new Float64Array([ws.id,200,200]));
+  ws.send(new Float64Array([ws.id,200,200]));
 });
 
 //setInterval(testaaa, 3000);
