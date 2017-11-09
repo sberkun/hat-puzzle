@@ -69,7 +69,7 @@
     }
   }
   ws.onopen = function(event){
-    interval=window.setInterval(function(){ws.send(mycoords);}, 20);
+    //interval=window.setInterval(function(){ws.send(mycoords);}, 20);
     window.setTimeout(function(){window.requestAnimationFrame(drawScene);}, 200);
   }
 
