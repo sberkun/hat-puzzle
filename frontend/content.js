@@ -1,5 +1,6 @@
   const HOST = location.origin.replace(/^http/, 'ws');
   const ws = new WebSocket(HOST);
+    ws.binaryType = 'arraybuffer';
   var bForCCC=true;const ccc = function(mmm){if(bForCCC) bForCCC=confirm(mmm);};
 
   
