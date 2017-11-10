@@ -38,4 +38,4 @@ setInterval(function(){
     for(var p in peoples){
       peoples[p].ws.send(infoBuffer);
     }
-}, 100);
+}, 20);
