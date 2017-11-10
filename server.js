@@ -27,7 +27,7 @@ wss.on('connection', (ws) => {
 });
 
 setInterval(function(){
-    var pplleenn = Object.keys(peoples).length;                      console.log(pplleenn);
+    var pplleenn = Object.keys(peoples).length;      
     var infoBuffer = new ArrayBuffer(pplleenn*12);
     var info = new Float32Array(infoBuffer);
     var a=0; for(var p in peoples){
