@@ -16,13 +16,13 @@ const wss = new SocketServer({ server });
 const peoples = {};
 const testaaa = require('./backend/game.js').exportFunction(peoples);
 const person = require('./backend/player.js').exportFunction;
-
+var aaa = true;
 wss.on('connection', (ws) => {
   ws.id = Math.random();
   peoples[ws.id] = new person(ws);
   ws.on('message',(message) => {
     var soifg = new Float32Array(message.data);
-    console.log(message.binaryData);
+    if(aaa){for(var th in message) console.log(th); aaa=false;}
     //peoples[ws.id].update(soifg[0],soifg[1]);
   });
   ws.on('close', ()=> delete peoples[ws.id]);
