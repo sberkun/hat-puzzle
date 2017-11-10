@@ -21,9 +21,7 @@ wss.on('connection', (ws) => {
   ws.id = Math.random();
   peoples[ws.id] = new person(ws);
   ws.on('message',(message) => {
-    //var soifg = new Float32Array(message.data);
-    console.log(message.readFloatLE()+", "+message.readFloatLE(4));
-    //peoples[ws.id].update(soifg[0],soifg[1]);
+    peoples[ws.id].update(message.readFloatLE(0),message.readFloatLE(4));
   });
   ws.on('close', ()=> delete peoples[ws.id]);
 });
