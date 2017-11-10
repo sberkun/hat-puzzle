@@ -61,7 +61,7 @@
   document.addEventListener('mousemove',function(mouseE){
     mycoords[0] = mouseE.clientX;
     mycoords[1] = mouseE.clientY;
-    score = "x: ";
+    document.getElementById("score").innerHTML = "x: "+mycoords[0]+" y:"+mycoords[1];
   });
   ws.onmessage = function(event){
     allcoords = new Float32Array(event.data);
