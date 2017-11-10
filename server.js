@@ -22,7 +22,7 @@ wss.on('connection', (ws) => {
   peoples[ws.id] = new person(ws);
   ws.on('message',(message) => {
     var soifg = new Float32Array(message.data);
-    console.log(soifg[0]);
+    console.log(message.data);
     //peoples[ws.id].update(soifg[0],soifg[1]);
   });
   ws.on('close', ()=> delete peoples[ws.id]);
