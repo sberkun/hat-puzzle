@@ -74,6 +74,7 @@
     for(var a=0;a<allcoords.length;a+=3){
       rect(allcoords[a+1]-5,allcoords[a+2]-5,10,10);
     }
+    window.requestAnimationFrame(drawScene);
   }
   ws.onopen = function(event){
     interval=window.setInterval(function(){ws.send(mycoordsBuffer);}, 20);
