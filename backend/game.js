@@ -9,7 +9,7 @@ module.exports.exportFunction = function(peoples){
       info[a++] = peoples[p].y;
     }
     for(var p in peoples){
-      peoples[p].ws.send(infoBuffer);
+      try{peoples[p].ws.send(infoBuffer);}catch(errProblyFromSomeoneClosingTab){}
     }
   };
 };
