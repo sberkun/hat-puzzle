@@ -1,16 +1,90 @@
 <!DOCTYPE html>
 <html>
-  <head><style>
-    body, html {
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body, html {
       height: 100%;
       margin: 0;
-      overflow: hidden;
-    }
-    .canvas-box{height:0px;}
-  </style></head>
-  <body>
-    <div class="canvas-box"><canvas id="myCanvas"></canvas></div>
-    <p id="score"></p>
-    <script src="content.js"></script>
-  </body>
+      font-size:50px;
+  }
+  .slide{
+      display: none;
+  }
+  .button {
+      background-color: #106325;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 50px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 10px;
+  }
+  
+</style>
+</head>
+<body>
+  <div style="background-color: green; height:100%;"><div id="bg"></div></div>
+  <div style="position:absolute;left:0;top:0;bottom:0;right:0;"><div id="ct">
+    
+      <div class="slide">
+          <br>
+          <div style="text-align: center;font-size:80px;">The Hat Puzzle</div><br>
+          
+          <div class="button" ontouchstart="f01();">make room</div> 
+          <div class="button" ontouchstart="f02();">join room</div> 
+      </div>
+      <div class="slide"> 
+          <div id="roomcodehtml">Room Code: loading...</div><br>
+          
+          <div id="numplayershtml">Number of players: 0</div><br>
+          <div id="startbuttonhtml" class="button" 
+            ontouchstart="f11();" style="display:none;">
+            start game
+          </div> 
+        
+      </div>
+      <div class="slide">
+          enter room code: <br>
+          textbox: [  ]  
+          <div class="button" ontouchstart="f21();">join</div><br>
+          <div hidden id="wrongcodehtml">That room is unavailable</div><br>
+          <div hidden>I'll be watching you...</div><br>
+      </div>
+      <div class="slide">
+          enter name         
+          <div class="button" ontouchstart="f31();">Go!</div> 
+      </div>
+      <div class="slide">
+          Story 
+          aliens have kidnapped you, yada yada yada
+          
+          make your plan, when ready press contine
+          <div class="button" ontouchstart="f41();">continue</div> 
+      </div>
+      <div class="slide">
+          image line of people
+          
+          <div id="choicehtml">
+            my hat is 
+            <div class="button" ontouchstart="f51();">white</div>
+            <div class="button" ontouchstart="f52();">black</div>
+          </div>
+      </div>
+      <div class="slide">
+          __ out of __ people guessed right!
+          
+          you win
+          you lose
+          
+          <div class="button" ontouchstart="f61();">back to lobby</div>
+      </div>
+    
+  </div></div>
+  <script src="content.js"></script>
+</body>
 </html>
