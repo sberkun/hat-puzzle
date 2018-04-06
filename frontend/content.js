@@ -18,7 +18,6 @@ function handle(message){
       game.roomcode = message.substring(2);
       document.getElementById("roomcodehtml")
         .innerHTML = "Room Code: "+game.roomcode;
-      alert("Room Code: "+game.roomcode);
     }
     else if(typem==="j:"){
       game.numplayers = parseInt(message.substring(2));
@@ -84,6 +83,7 @@ function f02(){
   switchSlides(2);
 }
 function f11(){
+  document.getElementById("startbuttonhtml").style.display = "none";
   ws.send("s:");
 }
 function f21(){
