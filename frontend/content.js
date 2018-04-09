@@ -34,13 +34,16 @@ function handle(message){
       switchSlides(4);
     }
     else if(typem==="n:"){
-      
+      player.number = parseInt(message.substring(2));
+      startPlay();
     }
     else if(typem==="a:"){
-      
+      handlePlayUpdate(message.substring(2));
     }
     else if(typem==="r:"){
-      
+      document.getElementById("resulthtml").innerHTML = ""+game.numright+" out of "+game.numplayers+" player guessed right!";
+      document.getElementById("winlosehtml").innerHTML = game.win? "You Win!" : "You Lose!" ;
+      switchSlides(6);
     }
 }
   
@@ -49,11 +52,14 @@ var player = {
   roomhost:false,
   name:"",
   whitehat:false, 
+  number: -1,
 };
 
 var game = {
   roomcode:"",
   numplayers:0,
+  win: false,
+  numright: 0,
 };
 
 window.onload = function(){
@@ -112,7 +118,10 @@ function f61(){
 }
 
 
-
+function startPlay(){ //sets up game screen
+}
+function handlePlayUpdate(message){
+}
 
 
 
