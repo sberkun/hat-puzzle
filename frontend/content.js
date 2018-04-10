@@ -62,7 +62,7 @@ function handle(message){
   
 const myCanvas = document.getElementById("myCanvas");
 const DRAW = myCanvas.getContext("2d");            
-(function drawHat(x,y,w,h,c){
+function drawHat(x,y,w,h,c){
   if(c==="?"){
     DRAW.font = "30px Arial";
     DRAW.fillText("?",x,y+h);
@@ -89,7 +89,7 @@ const DRAW = myCanvas.getContext("2d");
     DRAW.stroke();
     DRAW.fill();
   }
-})(0,0,100,100,"w");
+}
 
 
 
