@@ -67,6 +67,10 @@ const DRAW = myCanvas.getContext("2d");
     DRAW.font = "30px Arial";
     DRAW.fillText("?",x,y+h);
   }
+  else if(c==="u"){
+    DRAW.font = "20px Arial";
+    DRAW.fillText("(you)",x,y+h);
+  }
   else if(c==="b"){
     DRAW.fillStyle = "#000000";
     DRAW.beginPath();
@@ -85,7 +89,7 @@ const DRAW = myCanvas.getContext("2d");
     DRAW.stroke();
     DRAW.fill();
   }
-})(0,0,100,100,"?");
+})(0,0,100,100,"w");
 
 
 
