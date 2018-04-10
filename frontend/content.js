@@ -10,14 +10,15 @@ const ws = {
   send:function(a){
      if(a==="make room"){
        handle("c:test123");
-       handle("j:1");
+       handle("j:5");
      }
      else if(a.substring(0,2)==="c:"){
        handle("i:");
        handle("c:test123");
-       handle("j:1");
+       handle("j:5");
      }
      else if(a==="s:"){
+       handle("n:2wwwww");
        handle("s:");
      }
   },
@@ -47,8 +48,8 @@ function handle(message){
       switchSlides(4);
     }
     else if(typem==="n:"){
-      player.number = parseInt(message.substring(2));
-      startPlay();
+      player.number = parseInt(message.substring(2,3));
+      startPlay(message.substring(3));
     }
     else if(typem==="a:"){
       handlePlayUpdate(message.substring(2));
@@ -169,7 +170,14 @@ function f61(){
 }
 
 
-function startPlay(){ //sets up game screen
+function startPlay(message){ //sets up game screen
+  let eachwid = canvas.width/game.numplayers;
+  let eachhig = canvas.height/2;
+  for(let a=0;a<game.numplayers;a++){
+    if(a<player.number)        drawHat(eachwid*a,0,eachwid,eachhig,"?");
+    else if(a===player.number) drawHat(eachwid*a,0,eachwid,eachhig,"u");
+    else drawHat(eachwid*a,0,eachwid,eachhig,message.substring(a,a+1));
+  }
 }
 function handlePlayUpdate(message){
 }
