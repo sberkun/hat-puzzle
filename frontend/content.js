@@ -63,7 +63,7 @@ function handle(message){
 const myCanvas = document.getElementById("myCanvas");
   myCanvas.width = document.width;                        
   myCanvas.height = myCanvas.width*0.25;
-const DRAW = myCanvas.getContext("2d");                    alert(canvas.width); alert(canvas.height);
+const DRAW = myCanvas.getContext("2d");            
 (function drawHat(x,y,w,h,c){
   if(c==="?"){
     DRAW.font = "30px Arial";
