@@ -171,8 +171,8 @@ function f61(){
 
 
 function startPlay(message){ //sets up game screen
-  let eachwid = canvas.width/game.numplayers;
-  let eachhig = canvas.height/2;
+  let eachwid = myCanvas.width/game.numplayers;
+  let eachhig = myCanvas.height/2;
   for(let a=0;a<game.numplayers;a++){
     if(a<player.number)        drawHat(eachwid*a,0,eachwid,eachhig,"?");
     else if(a===player.number) drawHat(eachwid*a,0,eachwid,eachhig,"u");
