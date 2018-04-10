@@ -92,14 +92,14 @@ function f11(){
   document.getElementById("startbuttonhtml").style.display = "none";
   ws.send("s:");
 }
-function f21(){
-  
-  
-  ws.send("c:");
-}
+form1.onsubmit = function(e){ //f21
+    e.preventDefault();
+    var codey = form1.cc.value;
+    ws.send("c:"+codey);
+    form1.cc.value = "";
+    return false;
+};
 function f31(){
-  
-  
   switchSlides(1);
 }
 function f41(){
