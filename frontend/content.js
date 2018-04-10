@@ -60,6 +60,42 @@ function handle(message){
     }
 }
   
+const myCanvas = document.getElementById("myCanvas");
+  myCanvas.width = document.width;
+  myCanvas.height = myCanvas.width*0.25;
+const DRAW = myCanvas.getContext("2d");
+(function drawHat(x,y,w,h,c){
+  if(c==="?"){
+    ctx.font = "30px Arial";
+    DRAW.fillText("?",x,y+h);
+  }
+  else if(c==="b"){
+    DRAW.fillStyle = "#000000";
+    DRAW.beginPath();
+    DRAW.moveTo(x,y+h);
+    DRAW.lineTo(x+0.5*w,y);
+    DRAW.lineTo(x+w,y+h);
+    DRAW.stroke();
+    DRAW.fill();
+  }
+  else if(c==="w"){
+    DRAW.fillStyle = "#FFFFFF";
+    DRAW.beginPath();
+    DRAW.moveTo(x,y+h);
+    DRAW.lineTo(x+0.5*w,y);
+    DRAW.lineTo(x+w,y+h);
+    DRAW.stroke();
+    DRAW.fill();
+  }
+})(0,0,100,100,"?");
+
+
+
+
+
+
+
+
 
 var player = {
   roomhost:false,
@@ -135,6 +171,16 @@ function startPlay(){ //sets up game screen
 }
 function handlePlayUpdate(message){
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
