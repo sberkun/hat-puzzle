@@ -94,6 +94,8 @@ function drawHat(x,y,w,h,c){
   }
   DRAW.fillStyle = "#BCCBE2";
   DRAW.ellipse(x+w*0.5,y+h*0.75,w*0.4,h*0.25,0,0,2*Math.PI);
+  DRAW.stroke();
+  DRAW.fill();
 }
 
 
