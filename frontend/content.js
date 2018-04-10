@@ -61,7 +61,7 @@ function handle(message){
 }
   
 const myCanvas = document.getElementById("myCanvas");
-  myCanvas.width = document.width;                        
+  myCanvas.width = window.innerWidth;                        
   myCanvas.height = myCanvas.width*0.25;
 const DRAW = myCanvas.getContext("2d");            
 (function drawHat(x,y,w,h,c){
