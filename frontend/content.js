@@ -7,7 +7,20 @@ const ws = new WebSocket(HOST);
   ws.onmessage = function(event){handle(event.data);};
 */
 const ws = {
-  send:function(a){},
+  send:function(a){
+     if(a==="make room"){
+       handle("c:test123");
+       handle("j:1");
+     }
+     else if(a.substring(0,2)==="c:"){
+       handle("i:");
+       handle("c:test123");
+       handle("j:1");
+     }
+     else if(a==="s:"){
+       handle("s:");
+     }
+  },
 };
 
 
