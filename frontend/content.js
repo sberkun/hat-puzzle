@@ -65,31 +65,35 @@ const myCanvas = document.getElementById("myCanvas");
 const DRAW = myCanvas.getContext("2d");            
 function drawHat(x,y,w,h,c){
   if(c==="?"){
+    DRAW.fillStyle = "#000000"
     DRAW.font = "30px Arial";
-    DRAW.fillText("?",x,y+h);
+    DRAW.fillText("?",x,y+h*0.5);
   }
   else if(c==="u"){
+    DRAW.fillStyle = "#000000"
     DRAW.font = "20px Arial";
-    DRAW.fillText("(you)",x,y+h);
+    DRAW.fillText("(you)",x,y+h*0.5);
   }
   else if(c==="b"){
     DRAW.fillStyle = "#000000";
     DRAW.beginPath();
-    DRAW.moveTo(x,y+h);
+    DRAW.moveTo(x,y+h*0.5);
     DRAW.lineTo(x+0.5*w,y);
-    DRAW.lineTo(x+w,y+h);
+    DRAW.lineTo(x+w,y+h*.5);
     DRAW.stroke();
     DRAW.fill();
   }
   else if(c==="w"){
     DRAW.fillStyle = "#FFFFFF";
     DRAW.beginPath();
-    DRAW.moveTo(x,y+h);
+    DRAW.moveTo(x,y+h*0.5);
     DRAW.lineTo(x+0.5*w,y);
-    DRAW.lineTo(x+w,y+h);
+    DRAW.lineTo(x+w,y+h*0.5);
     DRAW.stroke();
     DRAW.fill();
   }
+  DRAW.fillStyle = "#BCCBE2";
+  DRAW.ellipse(x+w*0.5,y+h*0.75,w*0.4,h*0.25,0,0,2*Math.PI);
 }
 
 
@@ -172,7 +176,7 @@ function f61(){
 
 function startPlay(message){ //sets up game screen
   let eachwid = myCanvas.width/game.numplayers;
-  let eachhig = myCanvas.height/2;
+  let eachhig = myCanvas.height*0.75;
   for(let a=0;a<game.numplayers;a++){
     if(a<player.number)        drawHat(eachwid*a,0,eachwid,eachhig,"?");
     else if(a===player.number) drawHat(eachwid*a,0,eachwid,eachhig,"u");
