@@ -66,7 +66,7 @@ const myCanvas = document.getElementById("myCanvas");
 const DRAW = myCanvas.getContext("2d");
 (function drawHat(x,y,w,h,c){
   if(c==="?"){
-    ctx.font = "30px Arial";
+    DRAW.font = "30px Arial";
     DRAW.fillText("?",x,y+h);
   }
   else if(c==="b"){
