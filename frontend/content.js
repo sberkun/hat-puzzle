@@ -20,6 +20,14 @@ const ws = {
      else if(a==="s:"){
        handle("n:2wwwww");
        handle("s:");
+       handle("a:b");
+       handle("a:b");
+     }
+     else if(a.substring(0,2)==="a:"){
+       handle(a);
+       handle("a:w");
+       handle("a:w");
+       setTimeout(function(){ handle("r:3"); }, 3000);
      }
   },
 };
@@ -55,6 +63,8 @@ function handle(message){
       handlePlayUpdate(message.substring(2));
     }
     else if(typem==="r:"){
+      game.numright = parseInt(message.substring(2,3));
+      game.win = game.numright>=game.numplayers-1;
       document.getElementById("resulthtml").innerHTML = ""+game.numright+" out of "+game.numplayers+" player guessed right!";
       document.getElementById("winlosehtml").innerHTML = game.win? "You Win!" : "You Lose!" ;
       switchSlides(6);
@@ -65,12 +75,12 @@ const myCanvas = document.getElementById("myCanvas");
 const DRAW = myCanvas.getContext("2d");            
 function drawHat(x,y,w,h,c){
   if(c==="?"){
-    DRAW.fillStyle = "#000000"
+    DRAW.fillStyle = "#000000";
     DRAW.font = "30px Arial";
     DRAW.fillText("?",x,y+h*0.5);
   }
   else if(c==="u"){
-    DRAW.fillStyle = "#000000"
+    DRAW.fillStyle = "#000000";
     DRAW.font = "20px Arial";
     DRAW.fillText("(you)",x,y+h*0.5);
   }
@@ -98,7 +108,11 @@ function drawHat(x,y,w,h,c){
   DRAW.stroke();
   DRAW.fill();
 }
-
+function drawSay(x,y,w,h,m){
+  DRAW.fillStyle = "#000000";
+  DRAW.font = "20px Arial";
+  DRAW.fillText(m,x,y+h*0.5);
+}
 
 
 
@@ -119,6 +133,7 @@ var game = {
   numplayers:0,
   win: false,
   numright: 0,
+  turn:0,
 };
 
 window.onload = function(){
@@ -162,15 +177,15 @@ function f31(){
   switchSlides(1);
 }
 function f41(){
-  
-  
   switchSlides(5);
 }
 function f51(){
-  alert("f51");
+  ws.send("a:w");
+  document.getElementById("choicehtml").style.display = "none";
 }
 function f52(){
-  alert("f52");
+  ws.send("a:b");
+  document.getElementById("choicehtml").style.display = "none";
 }
 function f61(){
   switchSlides(0);
@@ -185,8 +200,16 @@ function startPlay(message){ //sets up game screen
     else if(a===player.number) drawHat(eachwid*a,0,eachwid,eachhig,"u");
     else drawHat(eachwid*a,0,eachwid,eachhig,message.substring(a,a+1));
   }
+  if(player.number===0) document.getElementById("choicehtml").style.display = "block";
 }
 function handlePlayUpdate(message){
+  let eachwid = myCanvas.width/game.numplayers;
+  let eachtop = myCanvas.height*0.75*0.75;
+  let eachhig = myCanvas.height*0.75*0.25;
+  if(message==="b") drawSay(eachwid*game.turn,eachtop,eachwid,eachhig,'"black"');
+  else if(message==="w") drawSay(eachwid*game.turn,eachtop,eachwid,eachhig,'"white"');
+  game.turn++;
+  if(player.number===game.turn) document.getElementById("choicehtml").style.display = "block";
 }
 
 
