@@ -63,6 +63,6 @@ wss.on('connection', (ws) => {
     }
     else messagehandler(ws.room,str);
   });
-  ws.on('close', ()=> );
+  ws.on('close', ()=> {} );
 });
 
