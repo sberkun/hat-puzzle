@@ -1,11 +1,11 @@
-/*
+
 const HOST = location.origin.replace(/^http/, 'ws');
 const ws = new WebSocket(HOST);
   ws.onopen = function(event){};
   ws.onclose = function(event){};
   ws.onerror = function(event){};
   ws.onmessage = function(event){handle(event.data);};
-*/
+/*
 const ws = {
   send:function(a){
      if(a==="make room"){
@@ -30,7 +30,7 @@ const ws = {
        setTimeout(function(){ handle("r:3"); }, 3000);
      }
   },
-};
+};*/
 
 
 function handle(message){
