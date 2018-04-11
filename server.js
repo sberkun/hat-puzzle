@@ -13,17 +13,56 @@ const server = express()
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const wss = new SocketServer({ server });
-const peoples = {};
-const updateGame = require('./backend/game.js').exportFunction(peoples);
-const person = require('./backend/player.js').exportFunction;
+//const peoples = {};
+//const updateGame = require('./backend/game.js').exportFunction(peoples);
+//const person = require('./backend/player.js').exportFunction;
+
+var rooms = [];
+
+function makeid() {
+  var text = "";
+  var possible = "abcdefghijklmnopqrstuvwxyz";
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  return text;
+}
+function makeroom(ws){
+  let roomy = {
+    code: makeid(),
+    players: [],
+  };
+  roomy.sendall = function(str){
+    for(let a in roomy.players) roomy.players[a].send(str);
+  };
+  roomy.addplayer = function(cc){
+    roomy.players.push(cc);
+    cc.room = roomy;
+    cc.send("i:");
+    cc.send("c:"+roomy.code);
+    roomy.sendall("j:"+roomy.players.length);
+  };
+  rooms.push(roomy);
+  roomy.addplayer(ws);
+}
+function messagehandler(room, message){
+  
+}
 
 wss.on('connection', (ws) => {
-  ws.id = Math.random();
-  peoples[ws.id] = new person(ws);
+  ws.room = false;
   ws.on('message',(message) => {
-    peoples[ws.id].update(message.readFloatLE(0),message.readFloatLE(4));
+    var str = message.data;
+    if(str==="make room") makeroom(ws);
+    else if(str.substring(0,2)==="c:"){
+      for(let a in rooms){if(rooms[a].code===str.substring(2)){
+        ws.room = rooms[a];
+        ws.room.addplayer(ws);
+        return;
+      }}
+      ws.send("o:");
+    }
+    else messagehandler(ws.room,str);
   });
-  ws.on('close', ()=> delete peoples[ws.id]);
+  ws.on('close', ()=> );
 });
 
-setInterval(updateGame, 20);
