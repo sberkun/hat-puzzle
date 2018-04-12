@@ -30,6 +30,9 @@ function makeroom(ws){
   let roomy = {
     code: makeid(),
     players: [],
+    ans: "",
+    numcorrect: 0,
+    turn: 0,
   };
   roomy.sendall = function(str){
     for(let a in roomy.players) roomy.players[a].send(str);
@@ -44,14 +47,26 @@ function makeroom(ws){
   rooms.push(roomy);
   roomy.addplayer(ws);
 }
-function messagehandler(room, message){
-  
+function messagehandler(room, str){
+  let det = str.substring(0,2);
+	if(det==="s:"){ 
+		room.sendall("s:");
+		let ans = ""; for(int a in room.players) ans+= (Math.random()<0.5)? "b":"w";
+`		room.ans = ans;
+		for(int a in room.players) room.players[a].send("n:"+a+ans);
+	}
+	else if(det==="a:"){
+		if(str.substring(2)===room.ans.substring(room.turn,room.turn+1)) room.numcorrect++;
+		room.turn++;
+		room.sendall(str);
+		if(room.turn===room.players.length) ws.send("r:"+room.numcorrect);
+	}
 }
 
 wss.on('connection', (ws) => {
   ws.room = false;
   ws.on('message',(message) => {
-    var str = message.data;
+    var str = message;
     if(str==="make room") makeroom(ws);
     else if(str.substring(0,2)==="c:"){
       for(let a in rooms){if(rooms[a].code===str.substring(2)){
