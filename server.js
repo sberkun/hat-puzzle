@@ -58,8 +58,7 @@ function messagehandler(room, str){
 		if(str.substring(2)===room.ans.substring(room.turn,room.turn+1)) room.numcorrect++;
 		room.turn++;
 		room.sendall(str);
-		if(room.turn===room.players.length) ws.send("r:"+room.numcorrect);
-												alert("game end");
+		if(room.turn===room.players.length) room.sendall("r:"+room.numcorrect);
 	}
 }
 
