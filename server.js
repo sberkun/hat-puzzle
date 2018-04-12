@@ -51,7 +51,7 @@ function messagehandler(room, str){
   let det = str.substring(0,2);
 	if(det==="s:"){ 
 		room.sendall("s:");
-		let ans = ""; for(int a in room.players) ans+= (Math.random()<0.5)? "b":"w";
+		let ans = ""; for(let a in room.players) ans+= (Math.random()<0.5)? "b":"w";
 `		room.ans = ans;
 		for(int a in room.players) room.players[a].send("n:"+a+ans);
 	}
