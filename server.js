@@ -50,12 +50,6 @@ function makeroom(ws){
 function messagehandler(room, str){
   let det = str.substring(0,2);
 	if(det==="s:"){ 
-		/*
-		room.sendall("s:");
-		let gg = ""; for(let a in room.players) gg+= (Math.random()<0.5)? "b":"w";
-`		room.ans = gg;
-		for(int a in room.players) room.players[a].send("n:"+a+gg);
-		*/
 		room.sendall("s:");
 		for(let a in room.players) room.ans+= (Math.random()<0.5? "b":"w");
 		for(let a in room.players) room.players[a].send("n:"+a+room.ans);
@@ -65,6 +59,7 @@ function messagehandler(room, str){
 		room.turn++;
 		room.sendall(str);
 		if(room.turn===room.players.length) ws.send("r:"+room.numcorrect);
+												alert("game end");
 	}
 }
 
