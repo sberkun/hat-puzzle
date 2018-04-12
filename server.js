@@ -57,6 +57,8 @@ function messagehandler(room, str){
 		for(int a in room.players) room.players[a].send("n:"+a+gg);
 		*/
 		room.sendall("s:");
+		for(let a in room.players) room.ans+= (Math.random()<0.5? "b":"w");
+		for(let a in room.players) room.players[a].send("n:"+a+room.ans);
 	}
 	else if(det==="a:"){
 		if(str.substring(2)===room.ans.substring(room.turn,room.turn+1)) room.numcorrect++;
