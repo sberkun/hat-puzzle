@@ -50,10 +50,13 @@ function makeroom(ws){
 function messagehandler(room, str){
   let det = str.substring(0,2);
 	if(det==="s:"){ 
+		/*
 		room.sendall("s:");
 		let gg = ""; for(let a in room.players) gg+= (Math.random()<0.5)? "b":"w";
 `		room.ans = gg;
 		for(int a in room.players) room.players[a].send("n:"+a+gg);
+		*/
+		room.sendall("s:");
 	}
 	else if(det==="a:"){
 		if(str.substring(2)===room.ans.substring(room.turn,room.turn+1)) room.numcorrect++;
