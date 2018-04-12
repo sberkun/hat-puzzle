@@ -188,7 +188,7 @@ function f52(){
   document.getElementById("choicehtml").style.display = "none";
 }
 function f61(){
-  switchSlides(0);
+  location.reload();
 }
 
 
